@@ -1,0 +1,277 @@
+:root {
+  --bg-color: #020617;
+  --surface-color: #0f172a;
+  --surface-accent: #1e293b;
+  --border-color: #334155;
+  --accent-color: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.2);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --success-color: #10b981;
+  --error-color: #f43f5e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(15, 23, 42, 0) 0px, transparent 50%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+  width: 100%;
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.header-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.04em;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(to bottom right, #fff 50%, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Sophisticated Card */
+.main-card {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.2), 
+    0 8px 10px -6px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.main-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+  opacity: 0.5;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.label-text {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 1.125rem 1.25rem;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 4px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+.input-field::placeholder {
+  color: var(--text-muted);
+}
+
+/* 3D Physical Button */
+.submit-btn {
+  width: 100%;
+  padding: 1.125rem;
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  
+  /* 3D Depth Effect */
+  box-shadow: 
+    0 6px 0 0 #1e40af, /* The 'side' of the button */
+    0 12px 20px -5px rgba(37, 99, 235, 0.4); /* The shadow on the surface */
+  
+  border-top: 1px solid rgba(255, 255, 255, 0.3); /* Top sheen */
+  position: relative;
+  top: 0;
+}
+
+.submit-btn:hover:not(:disabled) {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 0 0 #1e40af,
+    0 15px 25px -5px rgba(37, 99, 235, 0.5);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(4px); /* Moves down to simulate press */
+  box-shadow: 
+    0 2px 0 0 #1e40af, /* Side shrinks */
+    0 4px 10px -2px rgba(37, 99, 235, 0.3); /* Shadow shrinks */
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  border-top: none;
+}
+
+
+/* Results Section */
+.results-section {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border-color);
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.results-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-primary);
+}
+
+.question-item {
+  background: linear-gradient(to bottom right, var(--surface-accent), var(--surface-color));
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.question-item:hover {
+  transform: scale(1.01);
+  border-color: var(--accent-color);
+}
+
+.question-marker {
+  width: 28px;
+  height: 28px;
+  background-color: var(--accent-glow);
+  color: var(--accent-color);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* Loading Spinner */
+.loader {
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.alert-box {
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  background-color: rgba(244, 63, 94, 0.1);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  color: #fda4af;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .app-container {
+    padding: 3rem 1rem;
+  }
+  .header-title {
+    font-size: 2.25rem;
+  }
+  .main-card {
+    padding: 1.5rem;
+  }
+}
