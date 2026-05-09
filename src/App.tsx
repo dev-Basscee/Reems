@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sparkles, Briefcase, CheckCircle2, AlertCircle, Terminal } from 'lucide-react';
+import { Sparkles, CheckCircle2, AlertCircle, Terminal } from 'lucide-react';
 import './index.css';
 
 function App() {
